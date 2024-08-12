@@ -6,9 +6,7 @@ export interface Call {
   gasRequired?: number
 }
 
-export interface CallStateResult extends ReadonlyArray<any> {
-  readonly [key: string]: any
-}
+export type CallStateResult = any[] | any
 
 export interface CallState {
   readonly valid: boolean

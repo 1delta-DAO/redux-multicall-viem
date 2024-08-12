@@ -40,16 +40,17 @@ async function fetchChunk(
       abi: IMulticallABI,
       address: multicallInfo.address,
       functionName: 'multicall',
-      args: [chunk.map((obj) => ({
-        target: obj.address,
-        callData: obj.callData,
-        gasLimit: obj.gasRequired ?? DEFAULT_CALL_GAS_REQUIRED,
-      }))],
+      args: [
+        chunk.map((obj) => ({
+          target: obj.address,
+          callData: obj.callData,
+          gasLimit: obj.gasRequired ?? DEFAULT_CALL_GAS_REQUIRED,
+        }))
+      ],
       // we aren't passing through the block gas limit we used to create the chunk, because it causes a problem with the integ tests
       blockNumber: BigInt(blockNumber)
     }
     )
-    console.debug('returnData', returnData)
     if (isDebug) {
       returnData.forEach(({ gasUsed, returnData, success }, i) => {
         if (
