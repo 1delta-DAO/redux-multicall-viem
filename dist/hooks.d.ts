@@ -1,0 +1,13 @@
+import type { MulticallContext } from './context';
+import type { Call, CallResult, CallState, ContractInfo, ListenerOptions, ListenerOptionsWithGas } from './types';
+import { MethodArg } from './validation';
+import { AbiFunction } from 'viem';
+declare type OptionalMethodInputs = Array<MethodArg | MethodArg[] | undefined> | undefined;
+export declare function useCallsDataSubscription(context: MulticallContext, chainId: number | undefined, calls: Array<Call | undefined>, listenerOptions?: ListenerOptions): CallResult[];
+export declare function useSingleContractMultipleData(context: MulticallContext, chainId: number | undefined, latestBlockNumber: number | undefined, contract: ContractInfo | null | undefined, methodName: string, callInputs: OptionalMethodInputs[], options?: Partial<ListenerOptionsWithGas>): CallState[];
+export declare function useMultipleContractSingleData(context: MulticallContext, chainId: number | undefined, latestBlockNumber: number | undefined, addresses: (string | undefined)[], contractInterface: AbiFunction[], methodName: string, callInputs?: OptionalMethodInputs, options?: Partial<ListenerOptionsWithGas>): CallState[];
+export declare function useSingleCallResult(context: MulticallContext, chainId: number | undefined, latestBlockNumber: number | undefined, contract: ContractInfo | null | undefined, methodName: string, inputs?: OptionalMethodInputs, options?: Partial<ListenerOptionsWithGas>): CallState;
+export declare function useSingleContractWithCallData(context: MulticallContext, chainId: number | undefined, latestBlockNumber: number | undefined, contract: ContractInfo | null | undefined, callDatas: string[], options?: Partial<ListenerOptionsWithGas>): CallState[];
+export declare function useMultiChainMultiContractSingleData(context: MulticallContext, chainToBlockNumber: Record<number, number | undefined>, chainToAddresses: Record<number, Array<string | undefined>>, contractInterface: AbiFunction[], methodName: string, callInputs?: OptionalMethodInputs, options?: Partial<ListenerOptionsWithGas>): Record<number, CallState[]>;
+export declare function useMultiChainSingleContractSingleData(context: MulticallContext, chainToBlockNumber: Record<number, number | undefined>, chainToAddress: Record<number, string | undefined>, contractInterface: AbiFunction[], methodName: string, callInputs?: OptionalMethodInputs, options?: Partial<ListenerOptionsWithGas>): Record<number, CallState>;
+export {};
